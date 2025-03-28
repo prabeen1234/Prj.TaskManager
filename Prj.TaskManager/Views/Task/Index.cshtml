@@ -1,0 +1,41 @@
+﻿@model List<TaskItemModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<a href="/Task/Create">Create New Task</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>IsCompleted</th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>
+                    @if (item.IsCompleted)
+                    {
+                        <span>Yes</span>
+                    }
+                    else{
+                        <span>No</span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Task" asp-action="Edit" asp-route-id="@item.Id" >Edit</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
