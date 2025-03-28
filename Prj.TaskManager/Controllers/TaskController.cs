@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Prj.TaskManager.Data;
 using Prj.TaskManager.Models;
 
 namespace Prj.TaskManager.Controllers
 {
-    
+    [Authorize]
     public class TaskController : Controller
     {
         readonly AppDbContext _context;
@@ -14,10 +15,11 @@ namespace Prj.TaskManager.Controllers
             _context = appDbContext;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            var data = await _context.Tasks.ToListAsync();
+           var data =   _context.Tasks.ToList();
             return View(data);
+            
         }
         [HttpGet]
         public async Task<IActionResult> Create()

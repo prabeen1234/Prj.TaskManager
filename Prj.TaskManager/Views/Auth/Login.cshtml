@@ -1,0 +1,33 @@
+﻿@model LoginModel
+
+<div class="container-fluid">
+    @if (TempData["Message"] != null)
+    {
+        <div id="tempMessage" class="alert alert-danger">
+            @TempData["Message"]
+        </div>
+    }
+    <div class="align-middle"><h1 class="text-dark text-capitalize">login Form</h1></div>
+    <div class="form">
+        <form method="post" asp-action="Login">
+            
+            <div>
+                <label asp-for="Email">Email</label>
+                <input type="email" asp-for="Email" class="form-control" />
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div>
+                <label class="" asp-for="Password">Password</label>
+                <input type="text" asp-for="Password" class="form-control" />
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+
