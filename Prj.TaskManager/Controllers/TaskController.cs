@@ -34,7 +34,7 @@ namespace Prj.TaskManager.Controllers
             {
                 _context.Tasks.Add(model);
                 var result = await _context.SaveChangesAsync();
-                TempData["message"] = "Task Added";
+                TempData["Message"] = "Task Added";
                 return RedirectToAction("Index");
 
             }
@@ -53,11 +53,18 @@ namespace Prj.TaskManager.Controllers
             var task = _context.Tasks.SingleOrDefault(x => x.Id == id);
             return View(task);
         }
-        [HttpPost("Delete")]
+        [HttpPost,ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
             var task = _context.Tasks.SingleOrDefault(x => x.Id == id);
-            return View(task);
+            if (task != null)
+            {
+                _context.Tasks.Remove(task);
+                _context.SaveChanges();
+                TempData["Alert"] = "Deleted Successfully";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -73,11 +80,9 @@ namespace Prj.TaskManager.Controllers
             {
                 return View(model);
             }
-            
-
             _context.Tasks.Update(model);   
             _context.SaveChanges();
-            TempData["message"] = "task updated";
+            TempData["Message"] = "task updated";
             return RedirectToAction("Index");
         }
 

@@ -1,0 +1,14 @@
+﻿@model TaskItemModel
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <p class="card-text">@Model.Id</p>
+        <p class="card-text">@Model.Description</p>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model TaskItemModel
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <p class="card-text">@Model.Id</p>
+        <p class="card-text">@Model.Description</p>
+
+        <div>
+            <button class="btn btn-secondary" asp-controller="Task" asp-action="Edit" asp-route-id="@Model.Id"> Edit</button>
+        </div>
+        <div>
+            <button class="btn btn-secondary" asp-controller="Task" asp-action="Index" > Back To Index</button>
+        </div>
+    </div>
+</div>

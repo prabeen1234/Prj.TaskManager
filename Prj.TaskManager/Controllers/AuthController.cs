@@ -70,13 +70,13 @@ namespace Prj.TaskManager.Controllers
                     TempData["Message"] = "Invalid Credentials";
                     return View(model);
                 }
-                 await  _signInManager.SignInAsync(user, isPersistent: false);
+                await  _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }
             TempData["Message"] = "invalid Credentials";
             return View(model);
         }
-        // Logout action
+       
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

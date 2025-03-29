@@ -4,6 +4,18 @@
 }
 
 <h1>Index</h1>
+@if (TempData["Message"] != null)
+{
+    <div id="tempMessage" class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+@if (TempData["Alert"] != null)
+{
+    <div id="tempMessage" class="alert alert-danger">
+        @TempData["Alert"]
+    </div>
+}
 <a href="/Task/Create">Create New Task</a>
 <table class="table table-striped">
     <thead>
@@ -32,6 +44,7 @@
                 </td>
                 <td>
                     <a class="btn btn-primary" asp-controller="Task" asp-action="Edit" asp-route-id="@item.Id" >Edit</a>
+                    <a class="btn btn-danger" asp-controller="Task" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
